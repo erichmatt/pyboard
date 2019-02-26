@@ -1,18 +1,16 @@
-# main.py -- put your code here!
 import pyb
-from pyb import Pin, ExtInt, Switch
 import time
+from time import *
+from pyb import Pin, ExtInt, Switch
 
-start = time.ticks_ms()
+start = ticks_us()
 
 def log(line):
-    data = time.ticks_diff(time.ticks_ms(), start)
-    start = time.ticks_ms()
-    return print(data)    
+    global start
     
-#log = lambda e: print(time.ticks_diff(time.ticks_ms(), start))
-
-sw.callback(log)
-
-start = time.ticks_ms()
+    print(ticks_us() - start)
+    
+    start = ticks_us()
+    
+    
 extint = pyb.ExtInt(Pin('Y1'), ExtInt.IRQ_RISING, Pin.PULL_UP, log)
